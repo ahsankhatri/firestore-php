@@ -1,0 +1,46 @@
+{
+    "name": "ahsankhatri/firestore-php",
+    "description": "Firestore PHP Client",
+    "keywords": [
+        "php",
+        "firestore",
+        "firebase",
+        "google"
+    ],
+    "homepage": "https://github.com/ahsankhatri/firestore-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ahsaan Muhammad Yousuf",
+            "email": "ahsankhatri1992@gmail.com",
+            "homepage": "https://ahsaan.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.6",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "MrShan0\\PHPFirestore\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MrShan0\\PHPFirestore\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
