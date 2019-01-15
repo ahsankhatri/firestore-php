@@ -77,6 +77,10 @@ class FireStoreDocument {
         ];
     }
 
+    public function getDouble($value) {
+        return floatval($value['doubleValue']);
+    }
+
     public function setArray($fieldName, $value) {
 
         if ( !$value instanceof FireStoreArray ) {
@@ -247,6 +251,8 @@ class FireStoreDocument {
             $parsedValue = $this->getArray($value);
         } else if ( array_key_exists('integerValue', $value ) ) {
             $parsedValue = $this->getInteger($value);
+        } else if ( array_key_exists('doubleValue', $value ) ) {
+            $parsedValue = $this->getDouble($value);
         } else if ( array_key_exists('booleanValue', $value ) ) {
             $parsedValue = $this->getBoolean($value);
         } else if ( array_key_exists('nullValue', $value ) ) {
