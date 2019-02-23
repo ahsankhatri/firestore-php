@@ -2,22 +2,25 @@
 
 namespace MrShan0\PHPFirestore\Fields;
 
-use MrShan0\PHPFirestore\Contracts\FireStoreDataTypeContract;
-use MrShan0\PHPFirestore\FireStoreApiClient;
-use MrShan0\PHPFirestore\Helpers\FireStoreHelper;
+use MrShan0\PHPFirestore\Contracts\FirestoreDataTypeContract;
+use MrShan0\PHPFirestore\FirestoreClient;
+use MrShan0\PHPFirestore\Helpers\FirestoreHelper;
 
-class FireStoreReference implements FireStoreDataTypeContract
+class FirestoreReference implements FirestoreDataTypeContract
 {
     private $data;
+    private $databaseResource;
 
-    public function __construct($data='')
+    public function __construct($data='', $databaseResource = null)
     {
+        $this->databaseResource = $databaseResource;
+
         return $this->setData($data);
     }
 
     public function setData($data)
     {
-        $this->data = FireStoreHelper::normalizeCollection($data);
+        $this->data = FirestoreHelper::normalizeCollection($data);
     }
 
     public function getData()
@@ -29,12 +32,17 @@ class FireStoreReference implements FireStoreDataTypeContract
     {
         $value =
             'projects/' .
-            FireStoreApiClient::getConfig('project') .
+            FirestoreClient::getConfig('projectId') .
             '/databases/' .
-            FireStoreApiClient::getConfig('database') .
+            FirestoreClient::getConfig('database') .
             '/documents/' .
             $this->getData();
 
         return $value;
+    }
+
+    public function fetch()
+    {
+        return $this->databaseResource->getDocument($this->getData());
     }
 }

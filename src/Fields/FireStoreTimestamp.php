@@ -3,9 +3,9 @@
 namespace MrShan0\PHPFirestore\Fields;
 
 use DateTime;
-use MrShan0\PHPFirestore\Contracts\FireStoreDataTypeContract;
+use MrShan0\PHPFirestore\Contracts\FirestoreDataTypeContract;
 
-class FireStoreTimestamp implements FireStoreDataTypeContract
+class FirestoreTimestamp implements FirestoreDataTypeContract
 {
     const DEFAULT_FORMAT = 'Y-m-d\TG:i:s.z\Z';
 

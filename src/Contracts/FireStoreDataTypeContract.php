@@ -2,7 +2,7 @@
 
 namespace MrShan0\PHPFirestore\Contracts;
 
-interface FireStoreDataTypeContract
+interface FirestoreDataTypeContract
 {
     /**
      * Set data into variable which will be processed later

@@ -2,11 +2,11 @@
 
 namespace MrShan0\PHPFirestore\Fields;
 
-use MrShan0\PHPFirestore\Contracts\FireStoreDataTypeContract;
-use MrShan0\PHPFirestore\FireStoreDocument;
-use MrShan0\PHPFirestore\Helpers\FireStoreHelper;
+use MrShan0\PHPFirestore\Contracts\FirestoreDataTypeContract;
+use MrShan0\PHPFirestore\FirestoreDocument;
+use MrShan0\PHPFirestore\Helpers\FirestoreHelper;
 
-class FireStoreArray implements FireStoreDataTypeContract
+class FirestoreArray implements FirestoreDataTypeContract
 {
     private $data = [];
 
@@ -41,9 +41,9 @@ class FireStoreArray implements FireStoreDataTypeContract
         ];
 
         foreach ($this->data as $data) {
-            $document = new FireStoreDocument;
-            call_user_func_array([$document, 'set'.ucfirst(FireStoreHelper::getType($data))], ['string', $data]);
-            $payload['values'][] = $document->get('string');
+            $document = new FirestoreDocument;
+            call_user_func_array([$document, 'set'.ucfirst(FirestoreHelper::getType($data))], ['firestore', $data]);
+            $payload['values'][] = $document->_getRawField('firestore');
         }
 
         return $payload;

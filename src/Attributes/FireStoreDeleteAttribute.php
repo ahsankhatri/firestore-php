@@ -2,7 +2,7 @@
 
 namespace MrShan0\PHPFirestore\Attributes;
 
-class FireStoreDeleteAttribute
+class FirestoreDeleteAttribute
 {
     //
 }

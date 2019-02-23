@@ -2,10 +2,9 @@
 
 namespace MrShan0\PHPFirestore\Fields;
 
-use DateTime;
-use MrShan0\PHPFirestore\Contracts\FireStoreDataTypeContract;
+use MrShan0\PHPFirestore\Contracts\FirestoreDataTypeContract;
 
-class FireStoreGeoPoint implements FireStoreDataTypeContract
+class FirestoreGeoPoint implements FirestoreDataTypeContract
 {
     private $data;
 

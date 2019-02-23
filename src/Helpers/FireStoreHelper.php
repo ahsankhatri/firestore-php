@@ -2,18 +2,20 @@
 
 namespace MrShan0\PHPFirestore\Helpers;
 
-use MrShan0\PHPFirestore\Attributes\FireStoreDeleteAttribute;
-use MrShan0\PHPFirestore\Fields\FireStoreArray;
-use MrShan0\PHPFirestore\Fields\FireStoreGeoPoint;
-use MrShan0\PHPFirestore\Fields\FireStoreReference;
-use MrShan0\PHPFirestore\Fields\FireStoreTimestamp;
+use MrShan0\PHPFirestore\Attributes\FirestoreDeleteAttribute;
+use MrShan0\PHPFirestore\Fields\FirestoreArray;
+use MrShan0\PHPFirestore\Fields\FirestoreGeoPoint;
+use MrShan0\PHPFirestore\Fields\FirestoreReference;
+use MrShan0\PHPFirestore\Fields\FirestoreTimestamp;
+use MrShan0\PHPFirestore\Fields\FirestoreBytes;
 
-class FireStoreHelper
+class FirestoreHelper
 {
     /**
      * Decode payload to object
      *
      * @param  string
+     *
      * @return object
      */
     public static function decode($value)
@@ -33,9 +35,34 @@ class FireStoreHelper
     }
 
     /**
+     * Encode value to base64
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    public static function base64encode($value)
+    {
+        return base64_encode($value);
+    }
+
+    /**
+     * Decode base64 into plain-text value
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    public static function base64decode($value)
+    {
+        return base64_decode($value);
+    }
+
+    /**
      * Remove heading slash for collection
      *
      * @param  string
+     *
      * @return string
      */
     public static function normalizeCollection($value)
@@ -47,6 +74,7 @@ class FireStoreHelper
      * Filter will filter out those values which is not needed to send to server
      *
      * @param  array $value
+     *
      * @return array
      */
     public static function filter($value)
@@ -60,6 +88,7 @@ class FireStoreHelper
      * Decides which class to call when field matched.
      *
      * @param  string $value
+     *
      * @return string
      */
     public static function getType($value)
@@ -67,23 +96,27 @@ class FireStoreHelper
         $type = gettype($value);
 
         if ( $type === 'object' ) {
-            if ( $value instanceof FireStoreReference ) {
+            if ( $value instanceof FirestoreReference ) {
                 return 'reference';
             }
 
-            if ( $value instanceof FireStoreTimestamp ) {
+            if ( $value instanceof FirestoreTimestamp ) {
                 return 'timestamp';
             }
 
-            if ( $value instanceof FireStoreArray ) {
+            if ( $value instanceof FirestoreArray ) {
                 return 'array';
             }
 
-            if ( $value instanceof FireStoreGeoPoint ) {
+            if ( $value instanceof FirestoreGeoPoint ) {
                 return 'geoPoint';
             }
 
-            if ( $value instanceof FireStoreDeleteAttribute ) {
+            if ( $value instanceof FirestoreBytes ) {
+                return 'bytes';
+            }
+
+            if ( $value instanceof FirestoreDeleteAttribute ) {
                 return 'delete';
             }
         }
