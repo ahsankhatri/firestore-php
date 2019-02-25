@@ -24,7 +24,7 @@ or install it by adding it to `composer.json` then run `composer update`
 
 ```javascript
 "require": {
-    "ahsankhatri/ahsankhatri/firestore-php": "^2.0",
+    "ahsankhatri/firestore-php": "^2.0",
 }
 ```
 
@@ -43,7 +43,7 @@ If you use Composer, these dependencies should be handled automatically. If you 
 #### Initialization
 
 ```php
-$firestoreClient = new FirestoreApiClient('project-id', 'AIzaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', [
+$firestoreClient = new FirestoreClient('project-id', 'AIzaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', [
     'database' => '(default)',
 ]);
 ```
@@ -84,7 +84,7 @@ $document->setNull('null', null);
 $document->setString('string', 'abc123');
 $document->setInteger('integer', 123456);
 $document->setArray('arrayRaw', ['string'=>'abc123']);
-$document->setBytes('bytes', 'bytesdata');
+$document->setBytes('bytes', new FirestoreBytes('bytesdata'));
 $document->setArray('arrayObject', new FirestoreArray(['string' => 'abc123']));
 $document->setTimestamp('timestamp', new FirestoreTimestamp);
 $document->setGeoPoint('geopoint', new FirestoreGeoPoint(1.11,1.11));
@@ -153,6 +153,19 @@ $collections = $firestoreClient->listDocuments('users', [
 ```
 
 **Note:** You can pass custom parameters as supported by [firestore list document](https://firebase.google.com/docs/firestore/reference/rest/v1/projects.databases.documents/list#query-parameters)
+
+#### Get field from document
+
+```php
+$document->get('bytes')->parseValue(); // will return bytes decoded value.
+
+// Catch field that doesn't exist in document
+try {
+    $document->get('allowed_notification');
+} catch (\MrShan0\PHPFirestore\Exceptions\Client\FieldNotFound $e) {
+    // Set default value
+}
+```
 
 ### Firebase Authentication
 

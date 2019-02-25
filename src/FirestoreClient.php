@@ -350,6 +350,7 @@ class FirestoreClient
             $this->setLastResponse($response);
             $body = FirestoreHelper::decode((string) $response->getBody());
         } catch (BadResponseException $exception) {
+            $this->setLastResponse($exception->getResponse());
             $this->handleError($exception);
         }
 

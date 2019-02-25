@@ -2,16 +2,17 @@
 
 namespace MrShan0\PHPFirestore;
 
-use Exception;
 use DateTime;
+use Exception;
 use MrShan0\PHPFirestore\Attributes\FirestoreDeleteAttribute;
 use MrShan0\PHPFirestore\Exceptions\Client\FieldNotFound;
+use MrShan0\PHPFirestore\Exceptions\Client\FieldTypeError;
 use MrShan0\PHPFirestore\Fields\FirestoreArray;
+use MrShan0\PHPFirestore\Fields\FirestoreBytes;
 use MrShan0\PHPFirestore\Fields\FirestoreGeoPoint;
 use MrShan0\PHPFirestore\Fields\FirestoreObject;
 use MrShan0\PHPFirestore\Fields\FirestoreReference;
 use MrShan0\PHPFirestore\Fields\FirestoreTimestamp;
-use MrShan0\PHPFirestore\Fields\FirestoreBytes;
 use MrShan0\PHPFirestore\Helpers\FirestoreHelper;
 
 class FirestoreDocument {
@@ -347,7 +348,7 @@ class FirestoreDocument {
     /**
      * @return void
      */
-    public function setBytes($fieldName, $value)
+    public function setBytes($fieldName, FirestoreBytes $value)
     {
         $this->fields[$fieldName] = [
             'bytesValue' => FirestoreHelper::base64encode($value->getData()),
@@ -365,6 +366,8 @@ class FirestoreDocument {
     }
 
     /**
+     * A placeholder to delete particular keys from database
+     *
      * @param string $fieldName
      *
      * @return string
@@ -375,7 +378,7 @@ class FirestoreDocument {
     }
 
     /**
-     * A placeholder to delete particular keys from database
+     * Delete keys in bulk
      *
      * @param  string|array
      *
@@ -410,6 +413,17 @@ class FirestoreDocument {
     }
 
     /**
+     * Check whether document has such field or not.
+     *
+     * @param  string $fieldName
+     * @return boolean
+     */
+    public function has($fieldName)
+    {
+        return (array_key_exists($fieldName, $this->fields) && !$this->fields[$fieldName] instanceof FirestoreDeleteAttribute);
+    }
+
+    /**
      * Extract value from object by key
      *
      * @throws \MrShan0\PHPFirestore\Exceptions\Client\FieldNotFound
@@ -419,7 +433,7 @@ class FirestoreDocument {
      */
     public function get($fieldName)
     {
-        if (array_key_exists($fieldName, $this->fields) && !$this->fields[$fieldName] instanceof FirestoreDeleteAttribute) {
+        if ($this->has($fieldName)) {
             $result = $this->castValue($this->fields[$fieldName]);
 
             return $result;
