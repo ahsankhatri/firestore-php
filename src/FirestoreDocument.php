@@ -192,6 +192,9 @@ class FirestoreDocument {
     {
         $results = [];
 
+        if (empty($value['arrayValue']['values'])) {
+            return [];
+        }
         foreach ($value['arrayValue']['values'] as $key => $value) {
             $results[$key] = $this->castValue($value);
         }
