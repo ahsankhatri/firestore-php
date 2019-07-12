@@ -17,9 +17,9 @@ class FirestoreObject implements FirestoreDataTypeContract
         }
     }
 
-    public function add($data)
+    public function add($key, $value)
     {
-        array_push($this->data, $data);
+        $this->data[$key] = $value;
 
         return $this;
     }

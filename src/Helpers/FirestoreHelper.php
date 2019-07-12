@@ -95,6 +95,12 @@ class FirestoreHelper
     {
         $type = gettype($value);
 
+        if ($type === 'array') {
+            if (array_values($value) !== $value) {
+                return 'object';
+            }
+        }
+
         if ( $type === 'object' ) {
             if ( $value instanceof FirestoreReference ) {
                 return 'reference';

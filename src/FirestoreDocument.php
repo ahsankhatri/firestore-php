@@ -208,8 +208,8 @@ class FirestoreDocument {
     {
         if ( !$value instanceof FirestoreObject ) {
             $payload = new FirestoreObject;
-            foreach ($value as $row) {
-                $payload->add( $row );
+            foreach ($value as $key => $row) {
+                $payload->add( $key, $row );
             }
 
             $value = $payload;
