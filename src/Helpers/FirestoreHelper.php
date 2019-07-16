@@ -20,7 +20,7 @@ class FirestoreHelper
      */
     public static function decode($value)
     {
-        return json_decode($value, true, JSON_FORCE_OBJECT);
+        return json_decode($value, true);
     }
 
     /**
