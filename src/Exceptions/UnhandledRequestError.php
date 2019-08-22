@@ -7,6 +7,6 @@ class UnhandledRequestError extends \Exception
     public function __construct($code, $response)
     {
         $message = 'The request failed with the error: '.$code.'.  Response: '.$response;
-        parent::__construct($message);
+        parent::__construct($message, $code);
     }
 }
