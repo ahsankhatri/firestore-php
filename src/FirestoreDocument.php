@@ -36,11 +36,13 @@ class FirestoreDocument {
     {
         if (null !== $object) {
             $this->name       = $object['name'];
-            $this->createTime = $object['createTime'];
-            $this->updateTime = $object['updateTime'];
+            $this->createTime = isset($object['createTime']) ? $object['createTime'] : null;
+            $this->updateTime = isset($object['updateTime']) ? $object['updateTime'] : null;
 
-            foreach ($object['fields'] as $fieldName => $value) {
-                $this->fields[ $fieldName ] = $value;
+            if (isset($object['fields'])) {
+                foreach ($object['fields'] as $fieldName => $value) {
+                    $this->fields[ $fieldName ] = $value;
+                }
             }
         }
 
