@@ -9,6 +9,15 @@ use MrShan0\PHPFirestore\Authentication\FirestoreAuthentication;
 use MrShan0\PHPFirestore\Handlers\RequestErrorHandler;
 use MrShan0\PHPFirestore\Helpers\FirestoreHelper;
 
+/**
+ * @method array listDocuments($collection, array $parameters = [], array $options = [])
+ * @method FirestoreDocument getDocument($documentPath, array $parameters = [], array $options = [])
+ * @method array getBatchDocuments(array $documentsId, array $parameters = [], array $options = [])
+ * @method FirestoreDocument addDocument($collection, $payload, $documentId = null, array $parameters = [], array $options = [])
+ * @method FirestoreDocument updateDocument($documentPath, $payload, $documentExists = null, array $parameters = [], array $options = [])
+ * @method FirestoreDocument setDocument($documentPath, $payload, $documentExists = null, array $parameters = [], array $options = [])
+ * @method boolean deleteDocument($document, array $options = [])
+ */
 class FirestoreClient
 {
     /**
