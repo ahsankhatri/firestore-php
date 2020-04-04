@@ -78,6 +78,10 @@ class FirestoreDocument {
      */
     public function getCreatedTime()
     {
+        if (is_null($this->createTime)) {
+            return null;
+        }
+
         return new DateTime($this->createTime);
     }
 
@@ -86,6 +90,10 @@ class FirestoreDocument {
      */
     public function getUpdatedTime()
     {
+        if (is_null($this->updateTime)) {
+            return null;
+        }
+
         return new DateTime($this->updateTime);
     }
 
