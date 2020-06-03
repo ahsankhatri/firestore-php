@@ -1,5 +1,5 @@
 {
-    "name": "ahsankhatri/firestore-php",
+    "name": "stephen-tucker/firestore-php",
     "description": "Firestore PHP Client",
     "keywords": [
         "php",
@@ -7,7 +7,7 @@
         "firebase",
         "google"
     ],
-    "homepage": "https://github.com/ahsankhatri/firestore-php",
+    "homepage": "https://github.com/stephen-tucker/firestore-php",
     "license": "MIT",
     "authors": [
         {
