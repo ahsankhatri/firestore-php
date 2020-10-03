@@ -152,7 +152,7 @@ class FirestoreAuthentication
 
             return FirestoreHelper::decode((string) $this->client->getLastResponse()->getBody());
         } catch (BadResponseException $exception) {
-            $this->setLastResponse($exception->getResponse());
+            $this->client->setLastResponse($exception->getResponse());
             $this->handleError($exception);
         }
     }
