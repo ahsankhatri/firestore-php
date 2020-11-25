@@ -176,10 +176,15 @@ class FirestoreClient
         return 'projects/' . self::getConfig('projectId') . '/databases/' . self::getConfig('database');
     }
 
-    public function getApiEndPoint()
-    {
-        return $this->apiRoot;
-    }
+	public function getApiEndPoint() {
+		$emulator = getenv('FIRESTORE_EMULATOR_HOST');
+
+		if ($emulator) {
+			return $emulator;
+		}
+
+		return $this->apiRoot;
+	}
 
     /**
      * @param bool $status
