@@ -1,22 +1,20 @@
 {
-    "name": "jkwamlah/firestore-php",
+    "name": "ahsankhatri/firestore-php",
     "description": "Firestore PHP Client",
     "keywords": [
         "php",
         "firestore",
         "firebase",
-        "google",
-        "cloud firestore",
-        "firestore database"
+        "google"
     ],
-    "homepage": "https://github.com/jkwamlah/firestore-php",
+    "homepage": "https://github.com/ahsankhatri/firestore-php",
     "license": "MIT",
     "authors": [
         {
-            "name": "Jonadab Kwamlah",
-            "email": "19jonadab@gmail.com",
-            "homepage": "https://www.linkedin.com/in/jonadab-kwamlah-3a9692138",
-            "role": "Software Engineer"
+            "name": "Ahsaan Muhammad Yousuf",
+            "email": "ahsankhatri1992@gmail.com",
+            "homepage": "https://ahsaan.me",
+            "role": "Developer"
         }
     ],
     "require": {
